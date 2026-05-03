@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weigh — Support</title>
+  <style>
+    :root {
+      --bg: #f5f3ee;
+      --soft: #e9e3d6;
+      --ink: #2b2a26;
+      --ink2: #5a584f;
+      --ink3: #8a8779;
+      --accent: #6b8e6f;
+      --line: #d9d3c4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1a1a18;
+        --soft: #2a2a26;
+        --ink: #f0ede4;
+        --ink2: #b8b4a8;
+        --ink3: #7a7770;
+        --accent: #9bb8a0;
+        --line: #3a3a35;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Helvetica, Arial, sans-serif;
+      line-height: 1.55;
+      font-size: 16px;
+      padding: 48px 24px 96px;
+      display: flex;
+      justify-content: center;
+    }
+    main {
+      max-width: 640px;
+      width: 100%;
+    }
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      margin-bottom: 8px;
+    }
+    h1 {
+      font-family: "Times New Roman", Georgia, serif;
+      font-weight: 500;
+      font-size: 44px;
+      letter-spacing: -1px;
+      margin: 0 0 8px;
+      color: var(--ink);
+    }
+    .tagline {
+      font-size: 17px;
+      color: var(--ink2);
+      margin: 0 0 40px;
+    }
+    h2 {
+      font-family: "Times New Roman", Georgia, serif;
+      font-weight: 500;
+      font-size: 22px;
+      margin: 36px 0 12px;
+      color: var(--ink);
+    }
+    p, li {
+      color: var(--ink2);
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+    }
+    a:hover { border-bottom-color: var(--accent); }
+    .card {
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px 24px;
+      margin: 16px 0;
+    }
+    .card h3 {
+      font-size: 15px;
+      font-weight: 600;
+      margin: 0 0 6px;
+      color: var(--ink);
+    }
+    .card p {
+      font-size: 14px;
+      margin: 0;
+    }
+    ul { padding-left: 22px; }
+    li { margin-bottom: 8px; font-size: 15px; }
+    footer {
+      margin-top: 56px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      font-size: 13px;
+      color: var(--ink3);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="eyebrow">Weigh · Support</div>
+    <h1>Need a hand?</h1>
+    <p class="tagline">Weigh is built by one person. If something feels off, just write — I read every message.</p>
+
+    <div class="card">
+      <h3>Email</h3>
+      <p><a href="mailto:garima.ggoyal@gmail.com?subject=Weigh%20support">garima.ggoyal@gmail.com</a></p>
+    </div>
+
+    <h2>Common questions</h2>
+
+    <h3>Where does my data live?</h3>
+    <p>On your iPhone, and in Apple Health if you grant Health permission. Weigh has no servers, no account, and no analytics. Nothing leaves your device unless you explicitly export it.</p>
+
+    <h3>How do I turn on cycle tracking?</h3>
+    <p>Open <strong>Settings</strong> (gear tab) → set <strong>Gender</strong> to <em>Female</em> → toggle <strong>Cycle tracking</strong> on. The Cycle tab will appear in navigation.</p>
+
+    <h3>How do I connect Apple Health?</h3>
+    <p>Open <strong>Settings</strong> → <strong>Connect</strong> → tap <strong>Apple Health</strong>. iOS will ask which data types you want to share. You can change this later in <em>Settings → Privacy &amp; Security → Health → Weigh</em>.</p>
+
+    <h3>How do I delete an entry?</h3>
+    <p>Tap any day in the <strong>Calendar</strong> tab to see entries for that day, then tap the trash icon next to any entry.</p>
+
+    <h3>Does Weigh sync between devices?</h3>
+    <p>Not yet. Right now your data lives on the device you logged it on. Apple Health entries you write from Weigh will sync via iCloud Health like any other Health data.</p>
+
+    <h3>Will Weigh ever send me notifications?</h3>
+    <p>Only the daily reminder, if you enable it in Settings. Weigh doesn't send marketing or engagement nudges.</p>
+
+    <h2>Privacy</h2>
+    <p>Weigh does not collect, transmit, or sell any user data. There is no networking code in the app. See the <a href="privacy.html">privacy policy</a> for the full statement.</p>
+
+    <footer>
+      <p>Weigh © 2026 Garima Goyal — last updated May 2026</p>
+    </footer>
+  </main>
+</body>
+</html>

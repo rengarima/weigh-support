@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weigh — Privacy</title>
+  <style>
+    :root {
+      --bg: #f5f3ee;
+      --soft: #e9e3d6;
+      --ink: #2b2a26;
+      --ink2: #5a584f;
+      --ink3: #8a8779;
+      --accent: #6b8e6f;
+      --line: #d9d3c4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1a1a18;
+        --soft: #2a2a26;
+        --ink: #f0ede4;
+        --ink2: #b8b4a8;
+        --ink3: #7a7770;
+        --accent: #9bb8a0;
+        --line: #3a3a35;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      font-size: 16px;
+      padding: 48px 24px 96px;
+      display: flex;
+      justify-content: center;
+    }
+    main { max-width: 640px; width: 100%; }
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      margin-bottom: 8px;
+    }
+    h1 {
+      font-family: "Times New Roman", Georgia, serif;
+      font-weight: 500;
+      font-size: 44px;
+      letter-spacing: -1px;
+      margin: 0 0 8px;
+    }
+    .tagline { font-size: 17px; color: var(--ink2); margin: 0 0 32px; }
+    h2 {
+      font-family: "Times New Roman", Georgia, serif;
+      font-weight: 500;
+      font-size: 22px;
+      margin: 32px 0 12px;
+    }
+    p { color: var(--ink2); }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+    }
+    footer {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      font-size: 13px;
+      color: var(--ink3);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="eyebrow">Weigh · Privacy</div>
+    <h1>Privacy policy</h1>
+    <p class="tagline">The short version: Weigh has no servers and collects nothing.</p>
+
+    <h2>What Weigh collects</h2>
+    <p>Nothing. Weigh has no backend, no analytics, no crash reporting, and no advertising SDKs. There is no networking code in the app binary.</p>
+
+    <h2>What Weigh stores</h2>
+    <p>Everything you log — weight entries, period dates, notes, settings — is stored locally on your iPhone. If you grant Apple Health permission, weight entries are also written to Apple Health, where they are governed by Apple's own iCloud Health sync settings.</p>
+
+    <h2>Permissions Weigh asks for</h2>
+    <p><strong>Apple Health</strong> (read + write): Weigh reads weight history, body mass, sleep, workouts, steps, and menstrual flow data to build your trend chart and cycle context. It writes new weight entries you log. You can revoke individual data types at any time in Settings → Privacy &amp; Security → Health → Weigh.</p>
+    <p><strong>Calendars</strong> (read, optional): If you grant access, upcoming events appear alongside your weigh-ins as context. Calendar data is read only and never leaves the device. Denying this permission only hides the "Coming up" card.</p>
+
+    <h2>Children</h2>
+    <p>Weigh is not directed at children under 13. The app has no sign-in, no chat, and no user-generated public content.</p>
+
+    <h2>Changes</h2>
+    <p>If this policy ever changes, the updated version will be posted here. Material changes will also be flagged inside the app.</p>
+
+    <h2>Contact</h2>
+    <p>Questions? <a href="mailto:garima.ggoyal@gmail.com?subject=Weigh%20privacy">garima.ggoyal@gmail.com</a></p>
+
+    <footer>
+      <p>Weigh © 2026 Garima Goyal — last updated May 2026</p>
+    </footer>
+  </main>
+</body>
+</html>
