@@ -136,8 +136,25 @@
     <h3>Will Weigh ever send me notifications?</h3>
     <p>Only the daily reminder, if you enable it in Settings. Weigh doesn't send marketing or engagement nudges.</p>
 
+    <h2>Logging meals from photos</h2>
+
+    <h3>How does meal photo logging work?</h3>
+    <p>From the log sheet, switch to the <strong>Food</strong> tab and tap <strong>Take a photo</strong>. The photo is sent to the AI provider you've set up — Google Gemini, OpenAI, or Anthropic — which returns a dish name, calorie estimate, and macro breakdown. You can edit the calorie number before saving.</p>
+
+    <h3>Is photo logging required?</h3>
+    <p>No. The whole feature is opt-in and only activates after you add an API key in <strong>Settings → AI</strong>. If you skip it, Weigh works as a weight + cycle tracker with no networking at all.</p>
+
+    <h3>How do I set up an AI provider?</h3>
+    <p>Open <strong>Settings → AI</strong>, pick a provider, and paste an API key. Easiest option is Google AI Studio (Gemini Flash-Lite) — there's a free tier and the key takes about a minute to generate. Keys are stored in your iPhone's Keychain and never sent anywhere except to the provider you chose.</p>
+
+    <h3>What does the AI provider see?</h3>
+    <p>Only the meal photo and a short instruction prompt. Weigh does not send your weight, name, age, cycle, or any other data alongside the request. Photos aren't stored on any server we run — Weigh has no servers — but each provider has its own retention policy. See <a href="https://ai.google.dev/gemini-api/terms">Google AI Studio terms</a>, <a href="https://openai.com/policies/privacy-policy">OpenAI privacy</a>, or <a href="https://www.anthropic.com/legal/privacy">Anthropic privacy</a>.</p>
+
+    <h3>How do I remove my AI key?</h3>
+    <p>Open <strong>Settings → AI</strong>, tap the provider, and remove the key. The Food tab will switch back to a setup card and no further requests will be made.</p>
+
     <h2>Privacy</h2>
-    <p>Weigh does not collect, transmit, or sell any user data. There is no networking code in the app. See the <a href="privacy.html">privacy policy</a> for the full statement.</p>
+    <p>Weigh has no servers and collects no analytics. The only network traffic the app generates is meal-photo requests to the AI provider you opt into. See the <a href="privacy.html">privacy policy</a> for the full statement.</p>
 
     <footer>
       <p>Weigh © 2026 Garima Goyal — last updated May 2026</p>
