@@ -86,11 +86,28 @@
     <h2>What Weigh stores</h2>
     <p>Everything you log — weight entries, period dates, notes, meal entries, settings — is stored locally on your iPhone. If you grant Apple Health permission, weight entries are also written to Apple Health, where they are governed by Apple's own iCloud Health sync settings.</p>
 
-    <h2>Meal photo logging (optional)</h2>
-    <p>If — and only if — you enable the meal-photo feature by adding an API key in <em>Settings → AI</em>, the app will send the meal photo and a short instruction prompt to the AI provider you chose: Google Gemini, OpenAI, or Anthropic. Nothing else accompanies the request — not your weight, name, cycle, location, or any other data we have access to. The provider returns a dish name and calorie estimate, which is then stored locally with your other meal entries.</p>
-    <p>Each provider's privacy policy governs how they handle the request: <a href="https://ai.google.dev/gemini-api/terms">Google AI Studio</a>, <a href="https://openai.com/policies/privacy-policy">OpenAI</a>, <a href="https://www.anthropic.com/legal/privacy">Anthropic</a>. Weigh has no agreement with any of them and does not see, log, or proxy these requests.</p>
-    <p>Your API key is stored in your iPhone's Keychain. It is sent only to the provider it belongs to, never to Weigh.</p>
-    <p>If you do not configure an AI provider, the app makes no network requests of any kind.</p>
+    <h2>Meal photo logging (optional, opt-in)</h2>
+    <p><strong>What we send.</strong> If you enable the meal-photo feature by adding an API key in <em>Settings → AI</em>, then tap to send a meal photo, the app sends:</p>
+    <ul>
+      <li>the meal photo you just selected,</li>
+      <li>a short instruction prompt asking for a calorie estimate (no personal information inside),</li>
+      <li>your API key, only to authenticate the request with the provider you chose.</li>
+    </ul>
+    <p><strong>What we do NOT send.</strong> Your weight, name, age, gender, cycle, sleep, workouts, calendar events, location, other photos, and any device identifier are never included in the request.</p>
+
+    <p><strong>Who it is sent to.</strong> Exactly one of the three providers you set up:</p>
+    <ul>
+      <li>Google LLC (Gemini API) — see <a href="https://ai.google.dev/gemini-api/terms">Google AI Studio terms</a>,</li>
+      <li>OpenAI, L.L.C. (OpenAI API) — see <a href="https://openai.com/policies/privacy-policy">OpenAI privacy policy</a>,</li>
+      <li>Anthropic, PBC (Claude API) — see <a href="https://www.anthropic.com/legal/privacy">Anthropic privacy policy</a>.</li>
+    </ul>
+    <p>The request goes from your device directly to the provider — Weigh runs no servers and does not see, log, or proxy any part of the exchange. Each provider's own privacy policy and data-retention practices apply once the request reaches them.</p>
+
+    <p><strong>How permission is obtained.</strong> The first time you tap to send a photo to a given provider, the app shows a disclosure screen describing exactly what is sent and to whom (a copy of the bullet points above). Sending only happens after you tap <em>Allow & send</em>. You can revoke this consent at any time in <em>Settings → AI photo logging → Reset photo consent</em>; the app will then re-show the disclosure screen the next time you send a photo.</p>
+
+    <p><strong>Storage.</strong> Your API key is stored in your iPhone's Keychain. It is sent only to the provider it belongs to, never to Weigh. The dish name, calorie estimate, and a 200×200 thumbnail returned by the provider are stored locally alongside your other meal entries. They never leave your device.</p>
+
+    <p><strong>If you do not opt in.</strong> The app makes no network requests of any kind beyond Apple's own HealthKit / EventKit on-device APIs. No data leaves the device.</p>
 
     <h2>Permissions Weigh asks for</h2>
     <p><strong>Apple Health</strong> (read + write): Weigh reads weight history, body mass, sleep, workouts, steps, and menstrual flow data to build your trend chart and cycle context. It writes new weight entries you log. You can revoke individual data types at any time in Settings → Privacy &amp; Security → Health → Weigh.</p>
