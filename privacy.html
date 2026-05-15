@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Weigh — Privacy</title>
-  <meta name="description" content="Weigh's privacy policy — what's stored where, what leaves your device, and what we never collect." />
+  <title>Weigh - Privacy</title>
+  <meta name="description" content="Weigh's privacy policy - what's stored where, what leaves your device, and what we never collect." />
   <style>
     :root {
       --bg: #f5f3ee;
@@ -156,7 +156,7 @@
 
     <div class="tldr">
       <h3>The short version</h3>
-      <p>Your weight, cycle, sleep, meals, and Apple Health data stay on your device. The only things that leave it are (1) a meal photo if you use Take Photo, (2) a chat question if you use the chat feature — both go to our AI proxy and are not used to train any model. We don't run analytics, advertising SDKs, or any third-party tracking.</p>
+      <p>Your weight, cycle, sleep, meals, and Apple Health data stay on your device. The only things that leave it are (1) a meal photo if you use Take Photo, (2) a chat question if you use the chat feature - both go to our AI proxy and are not used to train any model. We don't run analytics, advertising SDKs, or any third-party tracking.</p>
     </div>
 
     <!-- What we collect -->
@@ -164,22 +164,22 @@
 
     <div class="card">
       <h3>On your device (we never see it)</h3>
-      <p>Weight entries, period dates, meal logs, sleep observations, hydration logs, cravings, calendar context, settings, and any notes you type — all stored locally in iOS's Documents folder. If you grant Apple Health permission, weight entries also flow into Health, governed by Apple's iCloud Health settings.</p>
+      <p>Weight entries, period dates, meal logs, sleep observations, hydration logs, cravings, calendar context, settings, and any notes you type - all stored locally in iOS's Documents folder. If you grant Apple Health permission, weight entries also flow into Health, governed by Apple's iCloud Health settings.</p>
     </div>
 
     <div class="card">
       <h3>Sent to our AI proxy (only when you use AI features)</h3>
-      <p>If you tap Take Photo on the Food tab, the photo (resized to 1024×1024) is sent to our proxy and forwarded to Google's Gemini API for a calorie estimate. If you use the chat feature, your typed question is sent along with a summary of your data (trend numbers, sleep stage averages, cycle phase, last 15 meal names) — never your raw entries, name, email, or any identifier you'd recognize as yours.</p>
+      <p>If you tap Take Photo on the Food tab, the photo (resized to 1024×1024) is sent to our proxy and forwarded to Google's Gemini API for a calorie estimate. If you use the chat feature, your typed question is sent along with a summary of your data (trend numbers, sleep stage averages, cycle phase, last 15 meal names) - never your raw entries, name, email, or any identifier you'd recognize as yours.</p>
       <p>The proxy adds no extra data. Neither we nor Google retain your photos or chats for training. Daily usage counters (how many photos, how many chats today) are kept anonymously to enforce free / Plus / Pro caps.</p>
     </div>
 
     <div class="card">
       <h3>Stored server-side (anonymous)</h3>
-      <p>To make subscriptions and daily caps work, we keep three small records keyed on an anonymous Firebase ID (auto-generated on first launch — not linked to your Apple ID, email, or name):</p>
+      <p>To make subscriptions and daily caps work, we keep three small records keyed on an anonymous Firebase ID (auto-generated on first launch - not linked to your Apple ID, email, or name):</p>
       <ul>
-        <li><strong>Subscription state</strong> — your current tier (free, Plus, Pro), renewal date, transaction ID from Apple.</li>
-        <li><strong>Daily usage counters</strong> — `{ chat: 7, photos: 2 }` for the current UTC day. Reset at midnight UTC.</li>
-        <li><strong>Sign in with Apple link (optional)</strong> — only if you use SIWA, we store the opaque Apple-provided user ID so your subscription follows you to a new device.</li>
+        <li><strong>Subscription state</strong> - your current tier (free, Plus, Pro), renewal date, transaction ID from Apple.</li>
+        <li><strong>Daily usage counters</strong> - `{ chat: 7, photos: 2 }` for the current UTC day. Reset at midnight UTC.</li>
+        <li><strong>Sign in with Apple link (optional)</strong> - only if you use SIWA, we store the opaque Apple-provided user ID so your subscription follows you to a new device.</li>
       </ul>
       <p>That's it. No weight, no cycle, no meals, no Health data, no analytics events.</p>
     </div>
@@ -205,7 +205,7 @@
 
     <div class="card">
       <h3>Camera and Photos (optional)</h3>
-      <p>Used only when you tap Take Photo on the Food tab. The captured or chosen photo is sent to our AI proxy for a calorie estimate, then discarded — only the dish name, calorie estimate, and a small 200×200 thumbnail are saved on your device.</p>
+      <p>Used only when you tap Take Photo on the Food tab. The captured or chosen photo is sent to our AI proxy for a calorie estimate, then discarded - only the dish name, calorie estimate, and a small 200×200 thumbnail are saved on your device.</p>
     </div>
 
     <div class="card">
@@ -225,7 +225,7 @@
     <p>The photo is base64-encoded and sent to our proxy on Firebase Functions in Singapore (<code style="background:var(--soft);padding:1px 5px;border-radius:4px;font-size:13px;">asia-southeast1</code>). The proxy adds your tier and daily usage counters, then forwards the photo + a prompt to Google's Gemini API. Gemini's response is parsed into <code style="background:var(--soft);padding:1px 5px;border-radius:4px;font-size:13px;">{dish, kcal, protein, carbs, fat}</code> and sent back. Photos are not stored on our infrastructure; they pass through memory only for the duration of the request (typically &lt; 3 seconds).</p>
 
     <h3>Chat with your data (Plus / Pro)</h3>
-    <p>Your question and a summary of your data (trend numbers, sleep stage averages, recent meal names, cycle phase if applicable, last 7 days of activity) are sent to the same proxy and forwarded to Gemini. The summary contains derived numbers, not raw entries — your individual weigh-ins, dates, or personal identifiers never appear.</p>
+    <p>Your question and a summary of your data (trend numbers, sleep stage averages, recent meal names, cycle phase if applicable, last 7 days of activity) are sent to the same proxy and forwarded to Gemini. The summary contains derived numbers, not raw entries - your individual weigh-ins, dates, or personal identifiers never appear.</p>
 
     <h3>Training and retention</h3>
     <p>Google's Gemini API terms commit to not using API traffic for model training. We do not retain prompts, photos, or responses beyond the request lifetime. The only durable record is the daily counter (photos and chats per day) needed to enforce caps.</p>
@@ -238,7 +238,7 @@
     <!-- Account deletion -->
     <div class="section-head"><span class="dot"></span> Account deletion</div>
 
-    <p>You can delete every server-side trace from inside the app: <strong>Settings → Account → Delete account</strong>. This wipes your subscription record, usage counters, and Sign in with Apple link from our database, then removes all local data on this device. Apple Health entries stay in Health — iOS owns those, and you can delete them in the Health app.</p>
+    <p>You can delete every server-side trace from inside the app: <strong>Settings → Account → Delete account</strong>. This wipes your subscription record, usage counters, and Sign in with Apple link from our database, then removes all local data on this device. Apple Health entries stay in Health - iOS owns those, and you can delete them in the Health app.</p>
 
     <!-- Children -->
     <div class="section-head"><span class="dot"></span> Children</div>
@@ -248,7 +248,7 @@
     <!-- Changes & contact -->
     <div class="section-head"><span class="dot"></span> Changes & contact</div>
 
-    <p>If this policy materially changes, the in-app feedback prompt or a brief banner will flag it on the next launch. Questions or concerns: <a href="mailto:support.agrcollective@gmail.com?subject=Weigh%20privacy">support.agrcollective@gmail.com</a> — one person reads every email.</p>
+    <p>If this policy materially changes, the in-app feedback prompt or a brief banner will flag it on the next launch. Questions or concerns: <a href="mailto:support.agrcollective@gmail.com?subject=Weigh%20privacy">support.agrcollective@gmail.com</a> - one person reads every email.</p>
 
     <footer>
       Made with care · v0.2
