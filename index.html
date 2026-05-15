@@ -4,25 +4,32 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Weigh — Support</title>
+  <meta name="description" content="Help, FAQs, and contact for the Weigh iOS app." />
   <style>
     :root {
       --bg: #f5f3ee;
       --soft: #e9e3d6;
+      --card: #fbfaf6;
       --ink: #2b2a26;
       --ink2: #5a584f;
       --ink3: #8a8779;
       --accent: #6b8e6f;
+      --accent-soft: rgba(107, 142, 111, 0.10);
       --line: #d9d3c4;
+      --warn: #b3866a;
     }
     @media (prefers-color-scheme: dark) {
       :root {
         --bg: #1a1a18;
         --soft: #2a2a26;
+        --card: #22221f;
         --ink: #f0ede4;
         --ink2: #b8b4a8;
         --ink3: #7a7770;
         --accent: #9bb8a0;
+        --accent-soft: rgba(155, 184, 160, 0.12);
         --line: #3a3a35;
+        --warn: #c7a385;
       }
     }
     * { box-sizing: border-box; }
@@ -37,10 +44,7 @@
       display: flex;
       justify-content: center;
     }
-    main {
-      max-width: 640px;
-      width: 100%;
-    }
+    main { max-width: 720px; width: 100%; }
     .eyebrow {
       font-size: 11px;
       letter-spacing: 0.18em;
@@ -59,109 +63,479 @@
     .tagline {
       font-size: 17px;
       color: var(--ink2);
-      margin: 0 0 40px;
+      margin: 0 0 32px;
+      line-height: 1.5;
     }
-    h2 {
-      font-family: "Times New Roman", Georgia, serif;
-      font-weight: 500;
-      font-size: 22px;
+    .section-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
       margin: 36px 0 12px;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .section-head .dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--accent);
+    }
+
+    /* Search */
+    .search-wrap {
+      position: relative;
+      margin: 0 0 28px;
+    }
+    .search-wrap input {
+      width: 100%;
+      padding: 12px 40px 12px 40px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: var(--card);
       color: var(--ink);
+      font-size: 15px;
+      font-family: inherit;
+      outline: none;
     }
-    p, li {
+    .search-wrap input:focus { border-color: var(--accent); }
+    .search-wrap .icon {
+      position: absolute;
+      left: 14px; top: 50%;
+      transform: translateY(-50%);
+      color: var(--ink3);
+      pointer-events: none;
+    }
+    .search-wrap .clear {
+      position: absolute;
+      right: 12px; top: 50%;
+      transform: translateY(-50%);
+      background: none; border: none;
+      color: var(--ink3); cursor: pointer;
+      padding: 4px; display: none;
+      font-size: 14px;
+    }
+    .search-wrap .clear.visible { display: block; }
+    .results-count {
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      color: var(--ink3);
+      margin: 12px 0 4px;
+      font-weight: 500;
+      display: none;
+    }
+    .results-count.visible { display: block; }
+    .no-results {
+      text-align: center;
+      padding: 48px 16px;
+      color: var(--ink3);
+      display: none;
+    }
+    .no-results.visible { display: block; }
+    .no-results .big { font-size: 28px; margin-bottom: 8px; }
+    .no-results h3 { color: var(--ink); margin: 0 0 4px; font-size: 16px; }
+    .no-results p { margin: 0; font-size: 13px; }
+
+    /* FAQ cards (details/summary collapse) */
+    details.qa {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 6px 0;
+      transition: border-color 0.15s ease;
+    }
+    details.qa[open] { border-color: color-mix(in srgb, var(--accent) 35%, var(--line)); }
+    details.qa summary {
+      cursor: pointer;
+      list-style: none;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    details.qa summary::-webkit-details-marker { display: none; }
+    details.qa summary::after {
+      content: "▾";
+      color: var(--ink3);
+      transition: transform 0.2s ease;
+      font-size: 12px;
+      margin-top: 2px;
+    }
+    details.qa[open] summary::after { transform: rotate(180deg); }
+    details.qa .answer {
+      padding-top: 10px;
+      font-size: 14px;
       color: var(--ink2);
+      line-height: 1.55;
     }
+    details.qa .answer p { margin: 0 0 8px; }
+    details.qa .answer p:last-child { margin-bottom: 0; }
+    details.qa .answer code {
+      background: var(--soft);
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-size: 13px;
+    }
+    details.qa.hidden { display: none; }
+    details.qa .section-tag {
+      display: none;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    body.searching details.qa .section-tag { display: block; }
+    body.searching .section-head { display: none; }
+
+    /* Feedback card */
+    .feedback {
+      background: var(--accent-soft);
+      border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+      border-radius: 18px;
+      padding: 20px 22px;
+      margin: 40px 0 24px;
+    }
+    .feedback h3 {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 6px;
+      font-weight: 700;
+    }
+    .feedback .lead {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+      margin: 0 0 6px;
+    }
+    .feedback p {
+      font-size: 13px;
+      color: var(--ink2);
+      margin: 0 0 14px;
+    }
+    .feedback .btn {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      padding: 9px 18px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      border: none;
+    }
+    .feedback .btn:hover { opacity: 0.9; }
+
     a {
       color: var(--accent);
       text-decoration: none;
       border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
     }
     a:hover { border-bottom-color: var(--accent); }
-    .card {
-      background: var(--soft);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 20px 24px;
-      margin: 16px 0;
-    }
-    .card h3 {
-      font-size: 15px;
-      font-weight: 600;
-      margin: 0 0 6px;
-      color: var(--ink);
-    }
-    .card p {
-      font-size: 14px;
-      margin: 0;
-    }
-    ul { padding-left: 22px; }
-    li { margin-bottom: 8px; font-size: 15px; }
+    a.no-underline, .feedback .btn { border-bottom: none; }
+
     footer {
       margin-top: 56px;
       padding-top: 24px;
       border-top: 1px solid var(--line);
-      font-size: 13px;
+      font-size: 12px;
       color: var(--ink3);
+      font-style: italic;
+      text-align: center;
+    }
+    footer .meta {
+      font-style: normal;
+      margin-top: 4px;
+      font-size: 11px;
+      letter-spacing: 0.04em;
     }
   </style>
 </head>
 <body>
   <main>
     <div class="eyebrow">Weigh · Support</div>
-    <h1>Need a hand?</h1>
-    <p class="tagline">Weigh is built by one person. If something feels off, just write — I read every message.</p>
+    <h1>How can we help?</h1>
+    <p class="tagline">A calm daily tracker is the easy part — the hard part is when something doesn't work. Search below, or write us. One person reads every email.</p>
 
-    <div class="card">
-      <h3>Email</h3>
-      <p><a href="mailto:support.agrcollecive@gmail.com?subject=Weigh%20support">support.agrcollective@gmail.com</a></p>
+    <!-- Search -->
+    <div class="search-wrap">
+      <span class="icon">⌕</span>
+      <input id="search" type="search" placeholder="Search help — e.g. cycle, photo, plus, delete" autocomplete="off" />
+      <button class="clear" id="clear" aria-label="Clear search">✕</button>
+    </div>
+    <div class="results-count" id="results-count"></div>
+    <div class="no-results" id="no-results">
+      <div class="big">⌕</div>
+      <h3>No matches</h3>
+      <p>Try a different word, or scroll the full list.</p>
     </div>
 
-    <h2>Common questions</h2>
+    <!-- Getting started -->
+    <div class="section-head"><span class="dot"></span> Getting started</div>
 
-    <h3>Where does my data live?</h3>
-    <p>On your iPhone, and in Apple Health if you grant Health permission. Weigh has no servers, no account, and no analytics. Nothing leaves your device unless you explicitly export it.</p>
+    <details class="qa">
+      <summary>What is Weigh for?<span class="section-tag">Getting started</span></summary>
+      <div class="answer">
+        <p>A calm daily weight tracker. Step on the scale, tap the number, watch the trend. Weigh quietly correlates your weigh-ins with sleep, cycle, calendar events, and meals so the trend is readable — not just a wobbly line.</p>
+      </div>
+    </details>
 
-    <h3>How do I turn on cycle tracking?</h3>
-    <p>Open <strong>Settings</strong> (gear tab) → set <strong>Gender</strong> to <em>Female</em> → toggle <strong>Cycle tracking</strong> on. The Cycle tab will appear in navigation.</p>
+    <details class="qa">
+      <summary>Why are calories called "estimates"?<span class="section-tag">Getting started</span></summary>
+      <div class="answer">
+        <p>Photo-based calorie counting is a starting point, not a measurement. The model guesses portion size from a 2D image — it gets dish names right far more often than the calorie count. Edit the number after the estimate comes back if you know better.</p>
+      </div>
+    </details>
 
-    <h3>How do I connect Apple Health?</h3>
-    <p>Open <strong>Settings</strong> → <strong>Connect</strong> → tap <strong>Apple Health</strong>. iOS will ask which data types you want to share. You can change this later in <em>Settings → Privacy &amp; Security → Health → Weigh</em>.</p>
+    <details class="qa">
+      <summary>Why does my goal recommendation use BMR × activity?<span class="section-tag">Getting started</span></summary>
+      <div class="answer">
+        <p>Mifflin-St Jeor BMR multiplied by an activity factor is the most widely-validated quick formula. It's a fine starting point. After two or three weeks of weigh-ins, your trend will tell you whether the number needs to come up or down.</p>
+      </div>
+    </details>
 
-    <h3>How do I delete an entry?</h3>
-    <p>Tap any day in the <strong>Calendar</strong> tab to see entries for that day, then tap the trash icon next to any entry.</p>
+    <!-- Weigh-ins -->
+    <div class="section-head"><span class="dot"></span> Weigh-ins</div>
 
-    <h3>Does Weigh sync between devices?</h3>
-    <p>Not yet. Right now your data lives on the device you logged it on. Apple Health entries you write from Weigh will sync via iCloud Health like any other Health data.</p>
+    <details class="qa">
+      <summary>What's the best time to weigh in?<span class="section-tag">Weigh-ins</span></summary>
+      <div class="answer">
+        <p>Same time, same scale, fasted, after the bathroom. The exact number matters less than the consistency — a stable routine lets the 7-day average tell you something real.</p>
+      </div>
+    </details>
 
-    <h3>Will Weigh ever send me notifications?</h3>
-    <p>Only the daily reminder, if you enable it in Settings. Weigh doesn't send marketing or engagement nudges.</p>
+    <details class="qa">
+      <summary>Why does the dial round to 0.1?<span class="section-tag">Weigh-ins</span></summary>
+      <div class="answer">
+        <p>Most home scales can't reliably resolve below 100 grams. Rounding keeps the trend honest and stops you over-reading day-to-day noise.</p>
+      </div>
+    </details>
 
-    <h2>Logging meals from photos</h2>
+    <details class="qa">
+      <summary>How do I delete a weigh-in?<span class="section-tag">Weigh-ins</span></summary>
+      <div class="answer">
+        <p>Open <strong>Calendar</strong> from the side drawer, tap the day, then tap the trash icon in the entry detail. Seed/demo entries (when seed mode is on) are display-only and reappear when the list re-renders.</p>
+      </div>
+    </details>
 
-    <h3>How does meal photo logging work?</h3>
-    <p>From the log sheet, switch to the <strong>Food</strong> tab and tap <strong>Take a photo</strong>. The first time you do this for a given AI provider, Weigh shows a disclosure screen listing exactly what is sent (the photo, a short instruction prompt, your API key) and what is not (your weight, name, cycle, or any other personal data). The photo only leaves your phone after you tap <strong>Allow & send</strong>. The provider returns a dish name, calorie estimate, and macro breakdown, which you can edit before saving.</p>
+    <!-- Food, photos & chat -->
+    <div class="section-head"><span class="dot"></span> Food, photos & chat</div>
 
-    <h3>What does the consent screen ask for?</h3>
-    <p>It names the company that will receive the photo (Google LLC for Gemini, OpenAI L.L.C. for OpenAI, or Anthropic PBC for Claude), shows the data that will be sent, links to that company's privacy policy, and offers <strong>Allow & send</strong> or <strong>Cancel</strong>. You can revoke consent at any time in <strong>Settings → AI photo logging → Reset photo consent</strong>; the disclosure screen will appear again on the next photo.</p>
+    <details class="qa">
+      <summary>How does the photo meal log work?<span class="section-tag">Food, photos & chat</span></summary>
+      <div class="answer">
+        <p>Tap <strong>Food → Take Photo</strong>. Snap a meal or pick from your library. Add a note like "no dressing" or "double portion" if it helps — the model adjusts. Confirm the photo, wait a few seconds, and you get a dish name, calories, and macros you can edit before saving.</p>
+      </div>
+    </details>
 
-    <h3>Is photo logging required?</h3>
-    <p>No. The whole feature is opt-in and only activates after you add an API key in <strong>Settings → AI</strong>. If you skip it, Weigh works as a weight + cycle tracker with no networking at all.</p>
+    <details class="qa">
+      <summary>How accurate are photo estimates?<span class="section-tag">Food, photos & chat</span></summary>
+      <div class="answer">
+        <p>Roughly ±20% on calories from a single photo. The model is much better at naming the dish than judging the portion. Edit the kcal number if you know it; user-edited entries also help the model calibrate future similar meals.</p>
+      </div>
+    </details>
 
-    <h3>How do I set up an AI provider?</h3>
-    <p>Open <strong>Settings → AI</strong>, pick a provider, and paste an API key. Easiest option is Google AI Studio (Gemini Flash-Lite) — there's a free tier and the key takes about a minute to generate. Keys are stored in your iPhone's Keychain and never sent anywhere except to the provider you chose.</p>
+    <details class="qa">
+      <summary>Why is there a daily cap on photos and chats?<span class="section-tag">Food, photos & chat</span></summary>
+      <div class="answer">
+        <p>AI calls cost real money on our end. Free covers light use (3 photos and 5 chats per day). Plus lifts both to 20 and 50. Pro to 100 and 200. The badge on Food and Chat shows what you've used today.</p>
+      </div>
+    </details>
 
-    <h3>What does the AI provider see?</h3>
-    <p>Only the meal photo and a short instruction prompt. Weigh does not send your weight, name, age, cycle, or any other data alongside the request. Photos aren't stored on any server we run — Weigh has no servers — but each provider has its own retention policy. See <a href="https://ai.google.dev/gemini-api/terms">Google AI Studio terms</a>, <a href="https://openai.com/policies/privacy-policy">OpenAI privacy</a>, or <a href="https://www.anthropic.com/legal/privacy">Anthropic privacy</a>.</p>
+    <details class="qa">
+      <summary>What can I ask the chat?<span class="section-tag">Food, photos & chat</span></summary>
+      <div class="answer">
+        <p>Anything about your own data — "how was my sleep last week?", "is my weight trending up?", "did dinners out hit my weigh-in?". The model only sees what you can already see in the app, summarized as numbers.</p>
+      </div>
+    </details>
 
-    <h3>How do I remove my AI key?</h3>
-    <p>Open <strong>Settings → AI</strong>, tap the provider, and remove the key. The Food tab will switch back to a setup card and no further requests will be made.</p>
+    <details class="qa">
+      <summary>Does the chat see my name or personal details?<span class="section-tag">Food, photos & chat</span></summary>
+      <div class="answer">
+        <p>No. The chat receives a summary of your data — weight trend, sleep stages, cycle phase, recent meals, calendar events — without name, email, or identifiers. Nothing trains a model.</p>
+      </div>
+    </details>
 
-    <h2>Privacy</h2>
-    <p>Weigh has no servers and collects no analytics. The only network traffic the app generates is meal-photo requests to the AI provider you opt into. See the <a href="privacy.html">privacy policy</a> for the full statement.</p>
+    <details class="qa">
+      <summary>How do I delete a meal?<span class="section-tag">Food, photos & chat</span></summary>
+      <div class="answer">
+        <p>On the Food page, swipe a meal entry left or tap the trash icon in its detail. Demo entries (seed mode on) are display-only.</p>
+      </div>
+    </details>
+
+    <!-- Plans & subscriptions -->
+    <div class="section-head"><span class="dot"></span> Plans & subscriptions</div>
+
+    <details class="qa">
+      <summary>What's the difference between Free, Plus, and Pro?<span class="section-tag">Plans & subscriptions</span></summary>
+      <div class="answer">
+        <p>Free gives you 3 photo meal logs and 5 chat turns a day. Plus lifts that to 20 photos and 50 chats. Pro goes to 100 photos and 200 chats — useful if you log every meal or chat a lot. Everything else (weight, cycle, sleep, hydration, insights) is identical across tiers.</p>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>How do I upgrade?<span class="section-tag">Plans & subscriptions</span></summary>
+      <div class="answer">
+        <p><strong>Settings → Subscription → Upgrade.</strong> Or tap any plan badge across the app. Or wait until you hit the daily cap — the paywall opens automatically with the upgrade options.</p>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>How do I cancel?<span class="section-tag">Plans & subscriptions</span></summary>
+      <div class="answer">
+        <p>iOS handles this — open the system <strong>Settings</strong> app → tap your name at the top → <strong>Subscriptions → Weigh → Cancel</strong>. Your tier stays active until the current period ends.</p>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>Is there a free trial?<span class="section-tag">Plans & subscriptions</span></summary>
+      <div class="answer">
+        <p>Annual plans (Plus Annual, Pro Annual) include a 7-day free trial for first-time subscribers. Cancel within the trial and you're not charged.</p>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>Can I switch between Plus and Pro?<span class="section-tag">Plans & subscriptions</span></summary>
+      <div class="answer">
+        <p>Yes, anytime. iOS prorates the upgrade automatically. <strong>Settings → Subscription</strong> → tap the other plan.</p>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>What if I run out of photos today?<span class="section-tag">Plans & subscriptions</span></summary>
+      <div class="answer">
+        <p>The Take Photo button greys out with an "Upgrade to scan" prompt. Caps reset at UTC midnight. Manual entry and barcode scanning stay available regardless of plan.</p>
+      </div>
+    </details>
+
+    <!-- Cycle, sleep & health -->
+    <div class="section-head"><span class="dot"></span> Cycle, sleep & health</div>
+
+    <details class="qa">
+      <summary>How do I turn on cycle tracking?<span class="section-tag">Cycle, sleep & health</span></summary>
+      <div class="answer">
+        <p>Open <strong>Settings</strong> → set <strong>Gender</strong> to <em>Female</em> under Profile → toggle <strong>Show on home → Cycle</strong> on. The Cycle tab will appear in navigation, alongside the cycle card on Home.</p>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>How do I connect Apple Health?<span class="section-tag">Cycle, sleep & health</span></summary>
+      <div class="answer">
+        <p>Open <strong>Settings → Connect → Apple Health</strong>. iOS will ask which data types you want to share. You can change this later in <em>iOS Settings → Privacy & Security → Health → Weigh</em>.</p>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>Where does my sleep data come from?<span class="section-tag">Cycle, sleep & health</span></summary>
+      <div class="answer">
+        <p>Apple Health. Weigh reads sleep stages with your permission and shows a per-night hypnogram, weekly stage averages, and a low-deep-sleep detector. We never write sleep back to Health.</p>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>What do the calendar dots mean?<span class="section-tag">Cycle, sleep & health</span></summary>
+      <div class="answer">
+        <p>Up to five small markers under each day: sage = weight logged, rose = period day, terracotta = event, gold = workout, purple = at least one meal photo logged. Legend lives below the month grid.</p>
+      </div>
+    </details>
+
+    <!-- Privacy & data -->
+    <div class="section-head"><span class="dot"></span> Privacy & data</div>
+
+    <details class="qa">
+      <summary>Where does my data live?<span class="section-tag">Privacy & data</span></summary>
+      <div class="answer">
+        <p>On your device. Weight, cycle, meal, sleep, and craving logs are stored locally in iOS Documents. Apple Health data syncs through HealthKit with your permission.</p>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>What data leaves my device?<span class="section-tag">Privacy & data</span></summary>
+      <div class="answer">
+        <p>Only what's needed for the photo and chat features: the image (for photo log) or your typed question + a summary of your data (for chat) goes to our AI proxy. No name, no email, no Health raw stream. Nothing trains a model. See the <a href="privacy.html">privacy policy</a> for the full statement.</p>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>Does Weigh have a server?<span class="section-tag">Privacy & data</span></summary>
+      <div class="answer">
+        <p>A small one — just to route AI calls and enforce the daily caps. Weight, meals, sleep, and cycle data never touch it. Subscription state is the only thing we keep server-side, keyed on an anonymous ID.</p>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>Does Weigh sync between devices?<span class="section-tag">Privacy & data</span></summary>
+      <div class="answer">
+        <p>Not yet. Right now your data lives on the device you logged it on. Apple Health entries you write from Weigh will sync via iCloud Health like any other Health data.</p>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>Will Weigh ever send me notifications?<span class="section-tag">Privacy & data</span></summary>
+      <div class="answer">
+        <p>Only the daily reminder, if you enable it in Settings. Weigh doesn't send marketing or engagement nudges.</p>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>How do I delete my account?<span class="section-tag">Privacy & data</span></summary>
+      <div class="answer">
+        <p><strong>Settings → Account → Delete account.</strong> This wipes your subscription record server-side and removes everything from this device. Apple Health entries stay in Health — iOS owns those, and you can delete them in the Health app.</p>
+      </div>
+    </details>
+
+    <!-- Feedback -->
+    <div class="feedback">
+      <h3>✉ Send feedback</h3>
+      <p class="lead">Didn't find an answer? Found a bug?</p>
+      <p>One person reads every email. Tell us what's off, what's missing, or what you'd love to see next.</p>
+      <a class="btn" href="mailto:support.agrcollective@gmail.com?subject=Weigh%20support">Email us</a>
+    </div>
 
     <footer>
-      <p>Weigh © 2026 Garima Goyal — last updated May 2026</p>
+      Made with care · v0.2
+      <div class="meta">Weigh © 2026 AGR Collective</div>
     </footer>
   </main>
+
+  <script>
+    (function() {
+      const input = document.getElementById('search');
+      const clear = document.getElementById('clear');
+      const noResults = document.getElementById('no-results');
+      const resultsCount = document.getElementById('results-count');
+      const cards = Array.from(document.querySelectorAll('details.qa'));
+
+      function filter() {
+        const q = input.value.trim().toLowerCase();
+        clear.classList.toggle('visible', q.length > 0);
+        document.body.classList.toggle('searching', q.length > 0);
+        if (!q) {
+          cards.forEach(c => { c.classList.remove('hidden'); c.open = false; });
+          noResults.classList.remove('visible');
+          resultsCount.classList.remove('visible');
+          return;
+        }
+        let shown = 0;
+        cards.forEach(c => {
+          const text = c.textContent.toLowerCase();
+          const match = text.includes(q);
+          c.classList.toggle('hidden', !match);
+          if (match) { c.open = true; shown++; }
+        });
+        noResults.classList.toggle('visible', shown === 0);
+        resultsCount.classList.toggle('visible', shown > 0);
+        resultsCount.textContent = shown + ' result' + (shown === 1 ? '' : 's');
+      }
+      input.addEventListener('input', filter);
+      clear.addEventListener('click', () => { input.value = ''; input.focus(); filter(); });
+    })();
+  </script>
 </body>
 </html>
