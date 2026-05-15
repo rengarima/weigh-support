@@ -4,24 +4,29 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Weigh — Privacy</title>
+  <meta name="description" content="Weigh's privacy policy — what's stored where, what leaves your device, and what we never collect." />
   <style>
     :root {
       --bg: #f5f3ee;
       --soft: #e9e3d6;
+      --card: #fbfaf6;
       --ink: #2b2a26;
       --ink2: #5a584f;
       --ink3: #8a8779;
       --accent: #6b8e6f;
+      --accent-soft: rgba(107, 142, 111, 0.10);
       --line: #d9d3c4;
     }
     @media (prefers-color-scheme: dark) {
       :root {
         --bg: #1a1a18;
         --soft: #2a2a26;
+        --card: #22221f;
         --ink: #f0ede4;
         --ink2: #b8b4a8;
         --ink3: #7a7770;
         --accent: #9bb8a0;
+        --accent-soft: rgba(155, 184, 160, 0.12);
         --line: #3a3a35;
       }
     }
@@ -37,7 +42,7 @@
       display: flex;
       justify-content: center;
     }
-    main { max-width: 640px; width: 100%; }
+    main { max-width: 720px; width: 100%; }
     .eyebrow {
       font-size: 11px;
       letter-spacing: 0.18em;
@@ -51,26 +56,95 @@
       font-size: 44px;
       letter-spacing: -1px;
       margin: 0 0 8px;
+      color: var(--ink);
     }
-    .tagline { font-size: 17px; color: var(--ink2); margin: 0 0 32px; }
+    .tagline {
+      font-size: 17px;
+      color: var(--ink2);
+      margin: 0 0 32px;
+    }
+    .section-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 36px 0 16px;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .section-head .dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--accent);
+    }
     h2 {
       font-family: "Times New Roman", Georgia, serif;
       font-weight: 500;
       font-size: 22px;
-      margin: 32px 0 12px;
+      margin: 0 0 8px;
+      color: var(--ink);
     }
-    p { color: var(--ink2); }
+    h3 {
+      font-size: 15px;
+      font-weight: 600;
+      margin: 18px 0 6px;
+      color: var(--ink);
+    }
+    p, li { color: var(--ink2); }
+    p { margin: 0 0 12px; }
+    ul { padding-left: 22px; margin: 6px 0 12px; }
+    li { margin-bottom: 6px; font-size: 15px; }
     a {
       color: var(--accent);
       text-decoration: none;
       border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
     }
+    a:hover { border-bottom-color: var(--accent); }
+
+    .tldr {
+      background: var(--accent-soft);
+      border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+      border-radius: 16px;
+      padding: 18px 22px;
+      margin: 0 0 32px;
+    }
+    .tldr h3 {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 8px;
+      font-weight: 700;
+    }
+    .tldr p { margin: 0; font-size: 14px; color: var(--ink); }
+    .tldr ul { margin: 8px 0 0; padding-left: 18px; }
+    .tldr li { font-size: 13.5px; color: var(--ink2); margin-bottom: 4px; }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin: 8px 0 16px;
+    }
+    .card h3 { margin-top: 0; }
+    .card p:last-child { margin-bottom: 0; }
+
     footer {
-      margin-top: 48px;
+      margin-top: 56px;
       padding-top: 24px;
       border-top: 1px solid var(--line);
-      font-size: 13px;
+      font-size: 12px;
       color: var(--ink3);
+      font-style: italic;
+      text-align: center;
+    }
+    footer .meta {
+      font-style: normal;
+      margin-top: 4px;
+      font-size: 11px;
+      letter-spacing: 0.04em;
     }
   </style>
 </head>
@@ -78,53 +152,107 @@
   <main>
     <div class="eyebrow">Weigh · Privacy</div>
     <h1>Privacy policy</h1>
-    <p class="tagline">The short version: Weigh has no servers, no analytics, and no account. The only data that ever leaves your phone is a meal photo, and only if you opt in.</p>
+    <p class="tagline">Last updated 15 May 2026. What's stored where, what leaves your device, and what we never collect.</p>
 
-    <h2>What Weigh collects</h2>
-    <p>Nothing. Weigh has no backend, no analytics, no crash reporting, and no advertising SDKs. We do not run any servers and we receive no data from the app.</p>
+    <div class="tldr">
+      <h3>The short version</h3>
+      <p>Your weight, cycle, sleep, meals, and Apple Health data stay on your device. The only things that leave it are (1) a meal photo if you use Take Photo, (2) a chat question if you use the chat feature — both go to our AI proxy and are not used to train any model. We don't run analytics, advertising SDKs, or any third-party tracking.</p>
+    </div>
 
-    <h2>What Weigh stores</h2>
-    <p>Everything you log — weight entries, period dates, notes, meal entries, settings — is stored locally on your iPhone. If you grant Apple Health permission, weight entries are also written to Apple Health, where they are governed by Apple's own iCloud Health sync settings.</p>
+    <!-- What we collect -->
+    <div class="section-head"><span class="dot"></span> What we collect</div>
 
-    <h2>Meal photo logging (optional, opt-in)</h2>
-    <p><strong>What we send.</strong> If you enable the meal-photo feature by adding an API key in <em>Settings → AI</em>, then tap to send a meal photo, the app sends:</p>
+    <div class="card">
+      <h3>On your device (we never see it)</h3>
+      <p>Weight entries, period dates, meal logs, sleep observations, hydration logs, cravings, calendar context, settings, and any notes you type — all stored locally in iOS's Documents folder. If you grant Apple Health permission, weight entries also flow into Health, governed by Apple's iCloud Health settings.</p>
+    </div>
+
+    <div class="card">
+      <h3>Sent to our AI proxy (only when you use AI features)</h3>
+      <p>If you tap Take Photo on the Food tab, the photo (resized to 1024×1024) is sent to our proxy and forwarded to Google's Gemini API for a calorie estimate. If you use the chat feature, your typed question is sent along with a summary of your data (trend numbers, sleep stage averages, cycle phase, last 15 meal names) — never your raw entries, name, email, or any identifier you'd recognize as yours.</p>
+      <p>The proxy adds no extra data. Neither we nor Google retain your photos or chats for training. Daily usage counters (how many photos, how many chats today) are kept anonymously to enforce free / Plus / Pro caps.</p>
+    </div>
+
+    <div class="card">
+      <h3>Stored server-side (anonymous)</h3>
+      <p>To make subscriptions and daily caps work, we keep three small records keyed on an anonymous Firebase ID (auto-generated on first launch — not linked to your Apple ID, email, or name):</p>
+      <ul>
+        <li><strong>Subscription state</strong> — your current tier (free, Plus, Pro), renewal date, transaction ID from Apple.</li>
+        <li><strong>Daily usage counters</strong> — `{ chat: 7, photos: 2 }` for the current UTC day. Reset at midnight UTC.</li>
+        <li><strong>Sign in with Apple link (optional)</strong> — only if you use SIWA, we store the opaque Apple-provided user ID so your subscription follows you to a new device.</li>
+      </ul>
+      <p>That's it. No weight, no cycle, no meals, no Health data, no analytics events.</p>
+    </div>
+
+    <!-- What we don't collect -->
+    <div class="section-head"><span class="dot"></span> What we don't collect</div>
+
+    <p>Weigh has no third-party analytics, no advertising SDKs, no crash-tracking SDK that ships data outside our own infrastructure, and no marketing pixels. Specifically:</p>
     <ul>
-      <li>the meal photo you just selected,</li>
-      <li>a short instruction prompt asking for a calorie estimate (no personal information inside),</li>
-      <li>your API key, only to authenticate the request with the provider you chose.</li>
+      <li>No Google Analytics, Mixpanel, Segment, Amplitude, Posthog, or similar.</li>
+      <li>No Facebook SDK, AppLovin, ad networks, or attribution providers.</li>
+      <li>No device fingerprinting beyond Apple's per-app vendor ID (used only for one-shot diagnostics code activation, when you're a beta tester).</li>
+      <li>No name, no email (except an opaque token if you use Sign in with Apple), no phone number, no location, no contacts, no other photos.</li>
     </ul>
-    <p><strong>What we do NOT send.</strong> Your weight, name, age, gender, cycle, sleep, workouts, calendar events, location, other photos, and any device identifier are never included in the request.</p>
 
-    <p><strong>Who it is sent to.</strong> Exactly one of the three providers you set up:</p>
-    <ul>
-      <li>Google LLC (Gemini API) — see <a href="https://ai.google.dev/gemini-api/terms">Google AI Studio terms</a>,</li>
-      <li>OpenAI, L.L.C. (OpenAI API) — see <a href="https://openai.com/policies/privacy-policy">OpenAI privacy policy</a>,</li>
-      <li>Anthropic, PBC (Claude API) — see <a href="https://www.anthropic.com/legal/privacy">Anthropic privacy policy</a>.</li>
-    </ul>
-    <p>The request goes from your device directly to the provider — Weigh runs no servers and does not see, log, or proxy any part of the exchange. Each provider's own privacy policy and data-retention practices apply once the request reaches them.</p>
+    <!-- Permissions -->
+    <div class="section-head"><span class="dot"></span> Permissions Weigh asks for</div>
 
-    <p><strong>How permission is obtained.</strong> The first time you tap to send a photo to a given provider, the app shows a disclosure screen describing exactly what is sent and to whom (a copy of the bullet points above). Sending only happens after you tap <em>Allow & send</em>. You can revoke this consent at any time in <em>Settings → AI photo logging → Reset photo consent</em>; the app will then re-show the disclosure screen the next time you send a photo.</p>
+    <div class="card">
+      <h3>Apple Health (read + write)</h3>
+      <p>Reads weight history, body mass, sleep, workouts, steps, active calories, heart rate, and menstrual flow to build your trend chart, sleep view, and cycle context. Writes weight entries you log. You can revoke individual data types in iOS Settings → Privacy & Security → Health → Weigh.</p>
+    </div>
 
-    <p><strong>Storage.</strong> Your API key is stored in your iPhone's Keychain. It is sent only to the provider it belongs to, never to Weigh. The dish name, calorie estimate, and a 200×200 thumbnail returned by the provider are stored locally alongside your other meal entries. They never leave your device.</p>
+    <div class="card">
+      <h3>Camera and Photos (optional)</h3>
+      <p>Used only when you tap Take Photo on the Food tab. The captured or chosen photo is sent to our AI proxy for a calorie estimate, then discarded — only the dish name, calorie estimate, and a small 200×200 thumbnail are saved on your device.</p>
+    </div>
 
-    <p><strong>If you do not opt in.</strong> The app makes no network requests of any kind beyond Apple's own HealthKit / EventKit on-device APIs. No data leaves the device.</p>
+    <div class="card">
+      <h3>Calendars (optional)</h3>
+      <p>If granted, upcoming events appear as "Coming up" context next to your weigh-ins. Calendar data is read-only and never leaves your device. Denying this permission only hides the Coming up card.</p>
+    </div>
 
-    <h2>Permissions Weigh asks for</h2>
-    <p><strong>Apple Health</strong> (read + write): Weigh reads weight history, body mass, sleep, workouts, steps, and menstrual flow data to build your trend chart and cycle context. It writes new weight entries you log. You can revoke individual data types at any time in Settings → Privacy &amp; Security → Health → Weigh.</p>
-    <p><strong>Calendars</strong> (read, optional): If you grant access, upcoming events appear alongside your weigh-ins as context. Calendar data is read only and never leaves the device. Denying this permission only hides the "Coming up" card.</p>
-    <p><strong>Camera and Photos</strong> (optional): Used only when you tap "Take a photo" in the Food tab. Photos are passed to the AI provider you've chosen for the single estimate call described above and are not stored anywhere outside your phone.</p>
+    <div class="card">
+      <h3>Sign in with Apple (optional)</h3>
+      <p>Lets your Plus / Pro subscription follow you to a new iPhone. We store only the opaque Apple-provided user identifier. Email is never requested, even when Apple offers to share it.</p>
+    </div>
 
-    <h2>Children</h2>
-    <p>Weigh is not directed at children under 13. The app has no sign-in, no chat, and no user-generated public content.</p>
+    <!-- AI features in detail -->
+    <div class="section-head"><span class="dot"></span> AI features in detail</div>
 
-    <h2>Changes</h2>
-    <p>If this policy ever changes, the updated version will be posted here. Material changes will also be flagged inside the app.</p>
+    <h3>Photo meal log (Plus / Pro)</h3>
+    <p>The photo is base64-encoded and sent to our proxy on Firebase Functions in Singapore (<code style="background:var(--soft);padding:1px 5px;border-radius:4px;font-size:13px;">asia-southeast1</code>). The proxy adds your tier and daily usage counters, then forwards the photo + a prompt to Google's Gemini API. Gemini's response is parsed into <code style="background:var(--soft);padding:1px 5px;border-radius:4px;font-size:13px;">{dish, kcal, protein, carbs, fat}</code> and sent back. Photos are not stored on our infrastructure; they pass through memory only for the duration of the request (typically &lt; 3 seconds).</p>
 
-    <h2>Contact</h2>
-    <p>Questions? <a href="mailto:garima.ggoyal@gmail.com?subject=Weigh%20privacy">garima.ggoyal@gmail.com</a></p>
+    <h3>Chat with your data (Plus / Pro)</h3>
+    <p>Your question and a summary of your data (trend numbers, sleep stage averages, recent meal names, cycle phase if applicable, last 7 days of activity) are sent to the same proxy and forwarded to Gemini. The summary contains derived numbers, not raw entries — your individual weigh-ins, dates, or personal identifiers never appear.</p>
+
+    <h3>Training and retention</h3>
+    <p>Google's Gemini API terms commit to not using API traffic for model training. We do not retain prompts, photos, or responses beyond the request lifetime. The only durable record is the daily counter (photos and chats per day) needed to enforce caps.</p>
+
+    <!-- Subscriptions and Apple -->
+    <div class="section-head"><span class="dot"></span> Subscriptions & Apple</div>
+
+    <p>Subscriptions are processed entirely by Apple via StoreKit and the App Store. We never see your card details. After purchase, Apple sends our server an anonymous notification with a transaction ID and product ID, which we store against your anonymous Firebase ID. Cancellation and refunds are handled in iOS Settings → your Apple ID → Subscriptions.</p>
+
+    <!-- Account deletion -->
+    <div class="section-head"><span class="dot"></span> Account deletion</div>
+
+    <p>You can delete every server-side trace from inside the app: <strong>Settings → Account → Delete account</strong>. This wipes your subscription record, usage counters, and Sign in with Apple link from our database, then removes all local data on this device. Apple Health entries stay in Health — iOS owns those, and you can delete them in the Health app.</p>
+
+    <!-- Children -->
+    <div class="section-head"><span class="dot"></span> Children</div>
+
+    <p>Weigh is not directed at children under 13. The app has no public profile, no social feed, no chat with strangers, and no user-generated content visible to others.</p>
+
+    <!-- Changes & contact -->
+    <div class="section-head"><span class="dot"></span> Changes & contact</div>
+
+    <p>If this policy materially changes, the in-app feedback prompt or a brief banner will flag it on the next launch. Questions or concerns: <a href="mailto:support.agrcollective@gmail.com?subject=Weigh%20privacy">support.agrcollective@gmail.com</a> — one person reads every email.</p>
 
     <footer>
-      <p>Weigh © 2026 Garima Goyal — last updated May 2026</p>
+      Made with care · v0.2
+      <div class="meta">Weigh © 2026 AGR Collective · Last updated 15 May 2026</div>
     </footer>
   </main>
 </body>
